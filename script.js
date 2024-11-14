@@ -55,6 +55,9 @@ function generateTables() {
     const romanNumerals = ["I", "II", "III", "IV", "V", "VI", "VII"];
 
     scaleNotes.forEach((note, index) => {
+        const degree = index + 1;
+
+        // Determine Roman numeral (uppercase for major, lowercase for minor/diminished)
         let romanNumeral = romanNumerals[index % 7];
         if (chordPattern[index].includes("m") || chordPattern[index].includes("dim")) {
             romanNumeral = romanNumeral.toLowerCase();
@@ -65,42 +68,14 @@ function generateTables() {
         scaleRow.innerHTML = `<td>${romanNumeral}</td><td>${note}</td>`;
         scaleTableBody.appendChild(scaleRow);
 
-        // Generate chord name
+        // Generate chord name and staff representation
         const chordName = `${note}${chordPattern[index]}`;
+        const staffImage = `<img src='https://dummyimage.com/100x50/000/fff&text=${encodeURIComponent(chordName)}' alt='${chordName}' class='staff'>`;
 
-        // Create container for VexFlow rendering
-        const staffContainer = document.createElement("div");
-        staffContainer.setAttribute("id", `staff-${index}`);
-        staffContainer.style.width = "200px";
-        staffContainer.style.height = "100px";
-
-        // Render chord to staff using VexFlow
-        const renderer = new Vex.Flow.Renderer(staffContainer, Vex.Flow.Renderer.Backends.SVG);
-        renderer.resize(200, 100);
-        const context = renderer.getContext();
-        const stave = new Vex.Flow.Stave(10, 10, 180);
-        stave.addClef("treble").setContext(context).draw();
-
-        // Add notes to the staff
-        const staveNotes = [
-            new Vex.Flow.StaveNote({
-                keys: [`${note.toLowerCase()}/4`],
-                duration: "q"
-            })
-        ];
-        const voice = new Vex.Flow.Voice({ num_beats: 1, beat_value: 4 });
-        voice.addTickables(staveNotes);
-
-        const formatter = new Vex.Flow.Formatter();
-        formatter.joinVoices([voice]).format([voice], 150);
-        voice.draw(context, stave);
-
-        // Add row to chord table
+        // Populate chord table
         const chordRow = document.createElement("tr");
-        chordRow.innerHTML = `<td>${romanNumeral}</td><td>${chordName}</td>`;
-        const staffCell = document.createElement("td");
-        staffCell.appendChild(staffContainer);
-        chordRow.appendChild(staffCell);
+        chordRow.innerHTML = `<td>${romanNumeral}</td><td>${chordName}</td><td>${staffImage}</td>`;
         chordTableBody.appendChild(chordRow);
     });
 }
+
