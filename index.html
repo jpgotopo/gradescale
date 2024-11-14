@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scale and Chord Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Scale and Chord Generator</h1>
+    <div class="container">
+        <label for="rootNote">Select Root Note:</label>
+        <select id="rootNote">
+            <option value="C">C</option>
+            <option value="C#">C#</option>
+            <option value="D">D</option>
+            <option value="D#">D#</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="F#">F#</option>
+            <option value="G">G</option>
+            <option value="G#">G#</option>
+            <option value="A">A</option>
+            <option value="A#">A#</option>
+            <option value="B">B</option>
+        </select>
+
+        <label for="scaleType">Select Scale Type:</label>
+        <select id="scaleType">
+            <option value="major">Major</option>
+            <option value="minor">Minor</option>
+            <option value="harmonicMinor">Harmonic Minor</option>
+            <option value="melodicMinor">Melodic Minor</option>
+            <option value="dorian">Dorian</option>
+            <option value="phrygian">Phrygian</option>
+            <option value="lydian">Lydian</option>
+            <option value="mixolydian">Mixolydian</option>
+            <option value="aeolian">Aeolian</option>
+            <option value="locrian">Locrian</option>
+            <option value="pentatonicMajor">Pentatonic Major</option>
+            <option value="pentatonicMinor">Pentatonic Minor</option>
+            <option value="blues">Blues</option>
+            <option value="chromatic">Chromatic</option>
+            <option value="majorHarmonic">Major Harmonic</option>
+        </select>
+
+        <button class="btn-primary" onclick="generateTables()">Generate Scale and Chords</button>
+
+        <h2>Scale Degrees</h2>
+        <table id="scaleTable">
+            <thead>
+                <tr>
+                    <th>Degree</th>
+                    <th>Note</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <h2>Chord Degrees</h2>
+        <table id="chordTable">
+            <thead>
+                <tr>
+                    <th>Degree</th>
+                    <th>Chord</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
