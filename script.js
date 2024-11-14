@@ -104,4 +104,3 @@ function generateTables() {
         chordTableBody.appendChild(chordRow);
     });
 }
-
